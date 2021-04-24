@@ -1,0 +1,6 @@
+label {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  margin: 0px auto 10px;
+}
