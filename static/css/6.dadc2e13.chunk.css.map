@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Title/Title.css"],"names":[],"mappings":"AAAA,OACE,iBAAkB,CAClB,oBAAqB,CACrB,0CACF","file":"6.dadc2e13.chunk.css","sourcesContent":[".Title {\n  text-align: center;\n  margin: 25px auto 5px;\n  text-shadow: 1px 1px 3px rgba(0, 128, 128, 0.6);\n}\n"]}
