@@ -15,7 +15,7 @@ export default function Navigation() {
       {isLoggedIn && (
         <NavLink
           to="/contacts"
-          exact
+          // exact
           className="link"
           activeClassName="activeLink"
         >

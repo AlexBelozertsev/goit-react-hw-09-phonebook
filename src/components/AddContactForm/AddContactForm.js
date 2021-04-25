@@ -14,9 +14,8 @@ export default function AddContactForm() {
   const [number, setNumber] = useState('');
   const contactsNames = useSelector(selectors.getContactsNames);
 
-  const handleChange = useCallback(e => {
-    setName(e.currentTarget.name);
-    setNumber(e.currentTarget.value);
+  const handleChange = useCallback(({ target: { name, value } }) => {
+    name === 'name' ? setName(value) : setNumber(value);
   }, []);
 
   const handleSubmit = useCallback(
@@ -36,7 +35,7 @@ export default function AddContactForm() {
         return;
       } else alert('Please enter Name or phone number');
     },
-    [name, number, dispatch, reset],
+    [name, number, dispatch],
   );
 
   const reset = () => {

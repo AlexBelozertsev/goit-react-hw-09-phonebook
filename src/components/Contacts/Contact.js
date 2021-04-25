@@ -10,7 +10,7 @@ import { phonebookOperations } from '../../redux/contacts';
 export default function Contact({ id, name, number }) {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
-  const onDeliteContact = id => dispatch(phonebookOperations.deleteContact(id));
+  const onDeliteContact = () => dispatch(phonebookOperations.deleteContact(id));
   const toggleModal = useCallback(() => {
     setShowModal(prevShowModal => !prevShowModal);
   }, []);

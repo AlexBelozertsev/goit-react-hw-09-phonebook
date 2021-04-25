@@ -16,19 +16,16 @@ export default function LoginView() {
     name === 'email' ? setEmail(value) : setPassword(value);
   }, []);
 
-  const handleSubmit = useCallback(
-    e => {
-      e.preventDefault();
-      if (!email || !password) {
-        alert('Fill In all areas');
-        return;
-      }
-      dispatch(authOperations.logIn({ email, password }));
-      setEmail('');
-      setPassword('');
-    },
-    [email, password, dispatch],
-  );
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!email || !password) {
+      alert('Fill In all areas');
+      return;
+    }
+    dispatch(authOperations.logIn({ email, password }));
+    setEmail('');
+    setPassword('');
+  };
 
   return (
     <div>

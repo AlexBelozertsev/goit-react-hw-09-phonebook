@@ -23,9 +23,8 @@ export default function ContactEditor({ contact, onSave }) {
     setNumber(contact.number);
   }, []);
 
-  const handleChange = useCallback(e => {
-    setName(e.currentTarget.name);
-    setNumber(e.currentTarget.value);
+  const handleChange = useCallback(({ target: { name, value } }) => {
+    name === 'name' ? setName(value) : setNumber(value);
   }, []);
 
   const handleSubmit = useCallback(
@@ -42,13 +41,13 @@ export default function ContactEditor({ contact, onSave }) {
         return;
       }
       if (name && number) {
-        dispatch(phonebookOperations.editContact(id, { name, number }));
+        dispatch(phonebookOperations.editContact({ id, name, number }));
         reset();
         onSave();
         return;
       } else alert('Please enter Name and phone Number');
     },
-    [name, number, dispatch, onSave, reset],
+    [name, number, dispatch, onSave],
   );
 
   const reset = () => {

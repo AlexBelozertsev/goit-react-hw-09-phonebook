@@ -45,7 +45,8 @@ const deleteContact = Id => async dispatch => {
   }
 };
 
-const editContact = ({ id, contact }) => async dispatch => {
+const editContact = ({ id, name, number }) => async dispatch => {
+  const contact = { name, number };
   dispatch(editContactRequest());
   try {
     const { data } = await axios.patch(`/contacts/${id}`, contact);

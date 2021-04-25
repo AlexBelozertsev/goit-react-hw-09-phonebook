@@ -14,29 +14,34 @@ const LoginPage = lazy(() => import('./views/LoginPage'));
 
 export default function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
   }, [dispatch]);
 
   return (
     <Layout>
-      <Switch>
-        <Suspense fallback={<p>Load...</p>}>
+      <Suspense fallback={<p>Load...</p>}>
+        <Switch>
           <PublicRoute exact path="/">
             <HomePage />
           </PublicRoute>
+
           <PublicRoute path="/register" restricted redirectTo="/contacts">
             <RegisterPage />
           </PublicRoute>
+
           <PublicRoute path="/login" restricted redirectTo="/contacts">
             <LoginPage />
           </PublicRoute>
+
           <PrivateRoute path="/contacts" redirectTo="/login">
             <ContactsPage />
           </PrivateRoute>
+
           <Redirect to="/" />
-        </Suspense>
-      </Switch>
+        </Switch>
+      </Suspense>
     </Layout>
   );
 }
