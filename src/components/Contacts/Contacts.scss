@@ -1,3 +1,4 @@
+@import 'styles/shared.scss';
 .contactsContainer {
   display: flex;
   flex-direction: column;
@@ -19,12 +20,12 @@
   align-items: center;
   margin: 6px;
   padding: 5px 8px;
-  background-color: rgba(0, 128, 128, 0.3);
-  border: 1px solid teal;
+  background-color: $element-background-color;
+  border: 1px solid $primary-background-color;
   border-radius: 5px;
 }
 .contactItem:hover {
-  box-shadow: 2px 3px 3px rgb(0 128 128 / 0.6);
+  box-shadow: 2px 3px 3px $primary-shadow-color;
 }
 .actions {
   display: flex;
@@ -35,15 +36,15 @@
   border: none;
   border-radius: 5px;
   padding: 3px 8px;
-  background-color: grey;
-  color: #fff;
+  background-color: $grey;
+  color: $white;
   margin: 3px;
   font-size: medium;
   cursor: pointer;
   outline: none;
-  box-shadow: 1px 2px 2px 0 rgb(0 0 0 / 0.5);
+  box-shadow: 1px 2px 2px 0 $secondary-shadow-color;
 }
 .actions button:hover {
-  background-color: #e84a5f;
-  box-shadow: 1px 2px 2px 1px rgb(0 0 0 / 0.6);
+  background-color: $active-background-color;
+  box-shadow: 1px 2px 2px 1px $primary-shadow-color;
 }

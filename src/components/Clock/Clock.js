@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import style from './Clock.module.css';
+import './Clock.scss';
 
 export default function Clock() {
   const options = {
@@ -25,8 +25,8 @@ export default function Clock() {
   }, []);
 
   return (
-    <div className={style.Clock}>
-      <div className={style.Clock__time}>{time}</div>
+    <div className="Clock">
+      <div className="Clock__time">{time}</div>
       <div>{date}</div>
     </div>
   );

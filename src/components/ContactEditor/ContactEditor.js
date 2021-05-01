@@ -21,7 +21,7 @@ export default function ContactEditor({ contact, onSave }) {
     setId(contact.id);
     setName(contact.name);
     setNumber(contact.number);
-  }, []);
+  }, [contact.id, contact.name, contact.number]);
 
   const handleChange = useCallback(({ target: { name, value } }) => {
     name === 'name' ? setName(value) : setNumber(value);
@@ -47,7 +47,7 @@ export default function ContactEditor({ contact, onSave }) {
         return;
       } else alert('Please enter Name and phone Number');
     },
-    [name, number, dispatch, onSave],
+    [contactsNames, contactsNumbers, name, number, dispatch, id, onSave],
   );
 
   const reset = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import style from './Contacts.module.css';
+import './Contacts.scss';
 import PropTypes from 'prop-types';
 import Button from '../Button';
 import Modal from '../Modal';
@@ -18,7 +18,7 @@ export default function Contact({ id, name, number }) {
   return (
     <>
       {name}: {number}
-      <div className={style.actions}>
+      <div className="actions">
         <Button type={'button'} text={'Edit'} onClick={toggleModal} />
         <Button type={'button'} text={'Delete'} onClick={onDeliteContact} />
       </div>

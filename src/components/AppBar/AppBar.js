@@ -1,20 +1,54 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import './AppBar.css';
+import './AppBar.scss';
 
 import Navigation from './Navigation';
 import UserMenu from '../UserMenu/UserMenu';
 import AuthNav from './AuthNav';
 import Clock from '../Clock';
+import ColorPicker from '../ColorPicker';
+import Weather from '../Weather';
+import Modal from '../Modal';
 import { authSelectors } from '../../redux/auth';
+import { weatherSelectors } from '../../redux/weather';
 
 export default function AppBar() {
+  const [visible, setVisible] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const toggle = useCallback(() => {
+    setVisible(visible => !visible);
+  }, []);
+  const toggleModal = useCallback(() => {
+    setShowModal(prevShowModal => !prevShowModal);
+  }, []);
   const isLoggedIn = useSelector(authSelectors.getIsAuthenticated);
+  const currentCityWeather = useSelector(weatherSelectors.getCityWeather);
+  console.log('currentCityWeather', currentCityWeather);
+
   return (
-    <header className="AppBar">
-      <Navigation />
-      <Clock />
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
-    </header>
+    <>
+      <header className="AppBar">
+        <Navigation />
+        <button type="button" className="button_weather" onClick={toggleModal}>
+          {currentCityWeather.cityName ? (
+            <span>
+              {currentCityWeather.cityName} : {currentCityWeather.cityTemp}°C
+            </span>
+          ) : (
+            <span>weather</span>
+          )}
+        </button>
+        <button type="button" className="button_appBar" onClick={toggle}>
+          <Clock />
+        </button>
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
+      </header>
+      {visible && <div className="menu">{<ColorPicker />}</div>}
+      {showModal && (
+        <Modal onClose={toggleModal}>
+          <Weather />
+        </Modal>
+      )}
+    </>
   );
 }

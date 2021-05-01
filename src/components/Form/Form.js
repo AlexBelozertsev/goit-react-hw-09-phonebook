@@ -1,9 +1,9 @@
 import React from 'react';
-import style from './Form.module.css';
+import './Form.scss';
 import PropTypes from 'prop-types';
 
 const Form = ({ autoComplete, children, onSubmit }) => (
-  <form autoComplete={autoComplete} className={style.Form} onSubmit={onSubmit}>
+  <form autoComplete={autoComplete} className="Form" onSubmit={onSubmit}>
     {children}
   </form>
 );

@@ -35,7 +35,7 @@ export default function AddContactForm() {
         return;
       } else alert('Please enter Name or phone number');
     },
-    [name, number, dispatch],
+    [name, number, dispatch, contactsNames],
   );
 
   const reset = () => {

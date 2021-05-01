@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './AppBar.css';
+import './AppBar.scss';
 
 const AuthNav = () => (
   <div>

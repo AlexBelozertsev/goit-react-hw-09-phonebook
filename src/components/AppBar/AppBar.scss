@@ -1,0 +1,50 @@
+@import 'styles/shared.scss';
+.AppBar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  min-height: 80px;
+  background-color: $element-background-color;
+  border-bottom: 1px solid $primary-background-color;
+}
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12;
+  margin: 10px;
+  font-weight: 700;
+  color: $grey;
+}
+.link:hover {
+  text-shadow: 2px 4px 4px $primary-shadow-color;
+}
+.activeLink {
+  color: $active-background-color;
+}
+.button_appBar {
+  @extend %button;
+  padding: 0;
+  background-color: $primary-shadow-color;
+}
+.button_weather {
+  @extend %button;
+  padding: 15px;
+  background-color: $primary-shadow-color;
+}
+.button_weather:hover,
+.button_appBar:hover {
+  background-color: $active-background-color;
+  box-shadow: 1px 4px 4px $primary-shadow-color;
+}
+.menu {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background-color: $primary-shadow-color;
+  border-bottom: 1px solid $primary-background-color;
+  color: $white;
+}

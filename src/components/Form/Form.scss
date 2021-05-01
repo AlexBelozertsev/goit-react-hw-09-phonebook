@@ -1,15 +1,17 @@
+@import 'styles/shared.scss';
+
 .Form {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   width: 500px;
   padding: 20px;
-  border: 1px solid teal;
+  border: 1px solid $primary-background-color;
   border-radius: 10px;
   text-align: center;
   font-weight: 500;
 }
 .Form:hover {
-  background-color: rgba(0, 128, 128, 0.3);
-  box-shadow: 2px 3px 3px 2px rgb(0 128 128 / 0.6);
+  background-color: $element-background-color;
+  box-shadow: 2px 3px 3px 2px $primary-shadow-color;
 }

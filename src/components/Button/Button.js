@@ -1,9 +1,9 @@
 import React from 'react';
-import style from './Button.module.css';
+import './Button.scss';
 import PropTypes from 'prop-types';
 
 const Button = ({ type, text, onClick }) => (
-  <button type={type} className={style.button} onClick={onClick}>
+  <button type={type} className="button" onClick={onClick}>
     {text}
   </button>
 );
