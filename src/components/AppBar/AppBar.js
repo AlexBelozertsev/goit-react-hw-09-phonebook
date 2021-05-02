@@ -22,17 +22,17 @@ export default function AppBar() {
     setShowModal(prevShowModal => !prevShowModal);
   }, []);
   const isLoggedIn = useSelector(authSelectors.getIsAuthenticated);
-  const currentCityWeather = useSelector(weatherSelectors.getCityWeather);
-  console.log('currentCityWeather', currentCityWeather);
+  const currentCityName = useSelector(weatherSelectors.getCityName);
+  const currentCityTemp = useSelector(weatherSelectors.getCityTemp);
 
   return (
     <>
       <header className="AppBar">
         <Navigation />
         <button type="button" className="button_weather" onClick={toggleModal}>
-          {currentCityWeather.cityName ? (
+          {currentCityTemp ? (
             <span>
-              {currentCityWeather.cityName} : {currentCityWeather.cityTemp}°C
+              {currentCityName} : {Math.round(currentCityTemp)}°C
             </span>
           ) : (
             <span>weather</span>

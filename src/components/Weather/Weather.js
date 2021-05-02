@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import api from '../../services/weather-api';
 import { addCity } from '../../redux/weather/weatherActions';
-import { weatherOperation, weatherSelectors } from '../../redux/weather';
+import { weatherSelectors } from '../../redux/weather';
 import './Weather.scss';
 import Form from '../Form';
 import Label from '../Label';
@@ -10,29 +10,20 @@ import Input from '../Input';
 
 export default function Weather() {
   const dispatch = useDispatch();
-  const [search, setSearch] = useState('Kyiv');
-  const [data, setData] = useState('');
   const initialCityName = useSelector(weatherSelectors.getCityName);
-  const { name, main, weather, wind } = data;
+  const [search, setSearch] = useState(initialCityName);
+  // const store = useStore();
+  // console.log(store.getState());
 
-  const getData = useCallback(
-    search =>
-      api.getFetch(search).then(d => {
-        setData(d);
-        dispatch(addCity({ name, main }));
-      }),
-    [dispatch, main, name],
+  useEffect(() => {
+    api.getFetch(search).then(data => {
+      dispatch(addCity({ name: data.name, main: data }));
+    });
+  }, [dispatch, search]);
+
+  const { weather, wind, name, main } = useSelector(
+    weatherSelectors.getWeather,
   );
-
-  useEffect(() => {
-    initialCityName && setSearch(initialCityName);
-    // dispatch(weatherOperation.getCurrentWeather());
-  }, []);
-
-  useEffect(() => {
-    getData(search);
-    // console.log({ name, main });
-  }, [getData]);
 
   const handleChange = e => {
     return e.target.value;
@@ -50,42 +41,40 @@ export default function Weather() {
 
   return (
     <>
-      {data && (
-        <div className="card">
-          <Form onSubmit={handleSumbit}>
-            <Label name={`Weather in:`}>
-              <Input
-                type={'text'}
-                name={'search'}
-                placeholder={'your city'}
-                onChange={handleChange}
-              />
-            </Label>
-          </Form>
-          <div className="weather">
-            <h1>
-              {name} . {Math.round(main.temp)}°C
-            </h1>
-            <ul className="flex">
-              {weather.map(el => {
-                const { icon, description } = el;
-                return (
-                  <li key={el.id}>
-                    <img
-                      src={`https://openweathermap.org/img/wn/${icon}.png`}
-                      alt="icon"
-                      className="icon"
-                    />
-                    <p>{description}</p>
-                  </li>
-                );
-              })}
-            </ul>
-            <p>Humidity: {main.humidity}%</p>
-            <p>Wind speed: {wind.speed} km/h</p>
-          </div>
+      <div className="card">
+        <Form onSubmit={handleSumbit}>
+          <Label name={`Weather in:`}>
+            <Input
+              type={'text'}
+              name={'search'}
+              placeholder={'your city'}
+              onChange={handleChange}
+            />
+          </Label>
+        </Form>
+        <div className="weather">
+          <h1>
+            {name} : {Math.round(main.temp)}°C
+          </h1>
+          <ul className="flex">
+            {weather.map(el => {
+              const { icon, description } = el;
+              return (
+                <li key={el.id}>
+                  <img
+                    src={`https://openweathermap.org/img/wn/${icon}.png`}
+                    alt="icon"
+                    className="icon"
+                  />
+                  <p>{description}</p>
+                </li>
+              );
+            })}
+          </ul>
+          <p>Humidity: {main.humidity}%</p>
+          <p>Wind speed: {wind.speed} km/h</p>
         </div>
-      )}
+      </div>
     </>
   );
 }

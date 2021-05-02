@@ -17,7 +17,7 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
 import { contactsReducer } from './contacts';
 import { weatherReducer } from './weather';
-import colorReduser from './colorReduser';
+import { colorReduser } from './color';
 
 const myMiddleWare = store => next => action => {
   next(action);
@@ -41,13 +41,17 @@ const weatherPersistConfig = {
   key: 'weather',
   storage,
 };
+const colorPersistConfig = {
+  key: 'color',
+  storage,
+};
 
 const store = configureStore({
   reducer: combineReducers({
     auth: persistReducer(authPersistConfig, authReducer),
     contacts: contactsReducer,
     weather: persistReducer(weatherPersistConfig, weatherReducer),
-    color: colorReduser,
+    color: persistReducer(colorPersistConfig, colorReduser),
   }),
   middleware,
   devTools: process.env.NODE_ENV === 'development',

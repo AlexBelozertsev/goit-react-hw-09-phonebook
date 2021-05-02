@@ -2,12 +2,9 @@ import { createReducer } from '@reduxjs/toolkit';
 import { addCity } from './weatherActions';
 
 const weatherReduser = createReducer(
-  { name: null, main: null },
+  { name: 'Kyiv', main: {} },
   {
-    [addCity]: (_, { payload }) => {
-      console.log(payload);
-      return payload;
-    },
+    [addCity]: (_, { payload }) => payload,
   },
 );
 

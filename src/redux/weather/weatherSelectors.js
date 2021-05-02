@@ -1,9 +1,5 @@
+const getWeather = state => state.weather.main;
 const getCityName = state => state.weather.name;
+const getCityTemp = state => state.weather.main.main?.temp || null;
 
-const getCityWeather = state => {
-  const cityName = state.weather.name;
-  const cityTemp = cityName ? Math.round(state.weather.main.temp) : null;
-  return { cityName, cityTemp };
-};
-
-export default { getCityWeather, getCityName };
+export default { getWeather, getCityName, getCityTemp };

@@ -50,10 +50,11 @@
     ]
   },
   "devDependencies": {
-    "prop-types": "^15.7.2",
     "husky": "^4.3.7",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
-    "redux-devtools-extension": "^2.13.8"
+    "prop-types": "^15.7.2",
+    "redux-devtools-extension": "^2.13.8",
+    "sass-loader": "^11.0.1"
   }
 }
