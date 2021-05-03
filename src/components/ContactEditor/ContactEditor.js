@@ -37,7 +37,7 @@ export default function ContactEditor({ contact, onSave }) {
         contactNumber => number === contactNumber,
       );
       if (checkDublicatName.length && checkDublicatNumber.length) {
-        alert(`Сontact ${name} has not been changed`);
+        alert(`Сontact ${name} is already in contacts`);
         return;
       }
       if (name && number) {
