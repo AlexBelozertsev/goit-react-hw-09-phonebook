@@ -1,4 +1,7 @@
-$baseColor: #008080;
+:root {
+  --baseColor: $baseColor;
+}
+$baseColor: rgb(0, 128, 128);
 $secondColor: #e84a5f;
 $black: #2a2a2a;
 $light-grey: #e2e2e2;
@@ -9,9 +12,9 @@ $indigo: #3f51b5;
 $red: #f44336;
 $blue: #2196f3;
 
-$primary-background-color: $baseColor;
-$element-background-color: #{$baseColor + '4d'};
-$primary-shadow-color: #{$baseColor + '99'};
+$primary-background-color: rgba(var(--baseColor), 1);
+$element-background-color: rgba(var(--baseColor), 0.3);
+$primary-shadow-color: rgba(var(--baseColor), 0.6);
 $active-background-color: $secondColor;
 $secondary-background-color: #{$secondColor + '33'};
 $body-background-color: $light-grey;

@@ -1,3 +1,3 @@
 const getColor = state => state.color.color;
 
-export default getColor;
+export default { getColor };

@@ -9,6 +9,7 @@ import { authOperations } from './redux/auth';
 import api from './services/weather-api';
 import { addCity } from './redux/weather/weatherActions';
 import { weatherSelectors } from './redux/weather';
+import { colorSelectors, colorOperations } from './redux/color';
 
 const HomePage = lazy(() => import('./views/HomePage'));
 const ContactsPage = lazy(() => import('./views/ContactsPage'));
@@ -18,6 +19,8 @@ const LoginPage = lazy(() => import('./views/LoginPage'));
 export default function App() {
   const dispatch = useDispatch();
   const initialCityName = useSelector(weatherSelectors.getCityName);
+  const initialColor = useSelector(colorSelectors.getColor);
+  const root = document.documentElement;
 
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
@@ -28,6 +31,13 @@ export default function App() {
       dispatch(addCity({ name: data.name, main: data }));
     });
   }, [dispatch, initialCityName]);
+
+  useEffect(() => {
+    root.style.setProperty(
+      '--baseColor',
+      colorOperations.hexToRgb(initialColor),
+    );
+  }, []);
 
   return (
     <Layout>
